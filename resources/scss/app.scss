@@ -1,2 +1,17 @@
-@import '~bootstrap/scss/bootstrap'
+@import '~bootstrap/scss/bootstrap';
 
+.table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.index_tr {
+    cursor: pointer;
+}
+
+.index_tr:hover {
+    background-color: #c9c9c9 !important;
+    scale: 1.01;
+    transition: all 0.2s ease-in-out;
+    font-weight: bold;
+}

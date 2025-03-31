@@ -21,7 +21,7 @@
             </thead>
             <tbody>
                 @foreach ($cars as $car)
-                    <tr class="index_tr" onclick="window.location='{{ route('cars.show', $car->id) }}'">
+                    <tr class="index_tr" onclick="window.location='{{ route('cars.show', $car) }}'">
                         <td>{{ $car->id }}</td>
                         <td>{{ $car->brand->name }}</td>
                         <td>{{ $car->model }}</td>

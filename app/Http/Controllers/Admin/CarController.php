@@ -60,9 +60,9 @@ class CarController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Car $car)
     {
-        //
+        return view("cars.show", compact("car"));
     }
 
     /**
