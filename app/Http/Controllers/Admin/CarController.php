@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use App\Models\Car;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CarController extends Controller
@@ -13,7 +15,7 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = Car::all();
+        $cars = Car::with('brand', 'category')->get();
         return view("cars.index", compact("cars"));
     }
 
@@ -22,7 +24,9 @@ class CarController extends Controller
      */
     public function create()
     {
-        //
+        $brands = Brand::all();
+        $categories = Category::all();
+        return view("cars.create", compact("brands", "categories"));
     }
 
     /**
@@ -30,7 +34,27 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $newCar = new Car();
+        $newCar->brand_id = $data["brand_id"];
+        $newCar->category_id = $data["category_id"];
+        $newCar->model = $data["model"];
+        $newCar->year = $data["year"];
+        $newCar->description = $data["description"];
+        $newCar->transmission = $data["transmission"];
+        $newCar->fuel_type = $data["fuel_type"];
+        $newCar->seats = $data["seats"];
+        $newCar->doors = $data["doors"];
+        $newCar->color = $data["color"];
+        $newCar->horsepower = $data["horsepower"];
+        $newCar->engine_size = $data["engine_size"];
+        $newCar->price_per_day = $data["price_per_day"];
+        $newCar->is_available = $data["is_available"];
+
+
+        $newCar->save();
+        return redirect()->route("cars.index");
     }
 
     /**

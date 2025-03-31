@@ -18,6 +18,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource("/", CarController::class)->middleware(["auth", "verified"]);
+Route::resource("cars", CarController::class)->middleware(["auth", "verified"]);
 
 require __DIR__ . '/auth.php';
