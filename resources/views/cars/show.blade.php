@@ -2,6 +2,28 @@
 @section("title", "Dettagli macchina")
 
 @section('content')
+    <div class="modal fade" id="destroyModal{{ $car->id }}" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Elimina macchina</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <strong>ATTENZIONE!</strong> Sei sicuro di voler eliminare <strong>definitivamente</strong> questa macchina?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                    <form action="{{ route('cars.destroy', $car->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Elimina</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <div class="container mt-4">
         <a href="{{ route('cars.index') }}" class="btn btn-secondary mb-3">Torna alla lista macchine</a>
         <div class="card">
@@ -34,8 +56,12 @@
                             </span>
                         </p>
                     </div>
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#destroyModal{{ $car->id }}">Elimina</button>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
 @endsection

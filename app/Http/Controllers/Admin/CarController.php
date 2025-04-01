@@ -68,24 +68,45 @@ class CarController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Car $car)
     {
-        //
+        $brands = Brand::all();
+        $categories = Category::all();
+        return view("cars.edit", compact("car", "brands", "categories"));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Car $car)
     {
-        //
+        $data = $request->all();
+        $car->brand_id = $data["brand_id"];
+        $car->category_id = $data["category_id"];
+        $car->model = $data["model"];
+        $car->year = $data["year"];
+        $car->description = $data["description"];
+        $car->transmission = $data["transmission"];
+        $car->fuel_type = $data["fuel_type"];
+        $car->seats = $data["seats"];
+        $car->doors = $data["doors"];
+        $car->color = $data["color"];
+        $car->horsepower = $data["horsepower"];
+        $car->engine_size = $data["engine_size"];
+        $car->price_per_day = $data["price_per_day"];
+        $car->is_available = $data["is_available"];
+
+        $car->update();
+        return redirect()->route("cars.show", $car);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Car $car)
     {
-        //
+        $car->delete();
+
+        return redirect()->route("cars.index");
     }
 }

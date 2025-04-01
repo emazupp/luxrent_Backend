@@ -3,6 +3,7 @@
 @section("title", "Lista macchine")
 
 @section('content')
+  
     <div class="container mt-4">
         <form action="{{route("cars.create")}}">
             <button class="btn btn-primary">Aggiungi macchina</button>
@@ -16,10 +17,10 @@
                     <th>Category</th>
                     <th>Available</th>
                     <th></th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
+        
                 @foreach ($cars as $car)
                     <tr class="index_tr" onclick="window.location='{{ route('cars.show', $car) }}'">
                         <td>{{ $car->id }}</td>
@@ -31,10 +32,11 @@
                                 {{ $car->is_available ? 'Yes' : 'No' }}
                             </span>
                         </td>
-                        <td><a href="" class="btn btn-warning">Modifica</a></td>
-                        <td><a href="" class="btn btn-danger">Elimina</a></td>
+                        <td><a href="{{ route('cars.edit', $car) }}" class="btn btn-warning">Modifica</a></td>
                     </tr>
-                @endforeach
+  
+                 @endforeach
+
             </tbody>
         </table>
     </div>
