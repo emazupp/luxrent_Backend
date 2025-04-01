@@ -4,10 +4,14 @@
 @section('content')
 <div class="container mt-4">
     <a href="{{ route('cars.index') }}" class="btn btn-secondary mb-3">Torna alla lista macchine</a>
-    <form action="{{ route('cars.store') }}" method="POST">
+    <form action="{{ route('cars.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         
         <div class="row g-3">
+            <div class="col-md-8 mb-3">
+                <input type="file" class="form-control" name="images[]" multiple>
+            </div>
+
             <div class="col-md-6">
                 <label for="brand_id" class="form-label">Marchio</label>
                 <select name="brand_id" id="brand_id" class="form-select" required>

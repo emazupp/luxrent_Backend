@@ -7,6 +7,7 @@ use App\Models\Brand;
 use App\Models\Car;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CarController extends Controller
 {
@@ -52,6 +53,15 @@ class CarController extends Controller
         $newCar->price_per_day = $data["price_per_day"];
         $newCar->is_available = $data["is_available"];
 
+        // Handle image upload
+        if (array_key_exists("images", $data)) {
+            foreach ($data["images"] as $image) {
+                $path = Storage::put("uploads", $image);
+                $newCar->images()->create([
+                    "path" => $path,
+                ]);
+            }
+        }
 
         $newCar->save();
         return redirect()->route("cars.index");
