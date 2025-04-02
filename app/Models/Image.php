@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Car_image extends Model
+class Image extends Model
 {
     public function cars()
     {

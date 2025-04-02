@@ -16,8 +16,8 @@ class Car extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function car_images()
+    public function images()
     {
-        return $this->belongsToMany(Car_image::class);
+        return $this->belongsToMany(Image::class);
     }
 }

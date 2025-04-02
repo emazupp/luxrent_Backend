@@ -53,14 +53,14 @@ class CarController extends Controller
         $newCar->price_per_day = $data["price_per_day"];
         $newCar->is_available = $data["is_available"];
 
-        // Handle image upload
         if (array_key_exists("images", $data)) {
+            $imageIds = [];
             foreach ($data["images"] as $image) {
                 $path = Storage::put("uploads", $image);
-                $newCar->images()->create([
-                    "path" => $path,
-                ]);
+                $newImage = $newCar->car_images()->create(["path" => $path]);
+                $imageIds[] = $newImage->id;
             }
+            $newCar->car_images()->attach($imageIds);
         }
 
         $newCar->save();
