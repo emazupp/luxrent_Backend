@@ -49,14 +49,17 @@
                     
                     <div class="col-md-6 mb-3">
                         <h2 class="text-center mb-3">Immagine principale</h2>
-                        <div class="d-flex align-items-center justify-content-center bg-dark rounded image-main-container">
-                            @if($mainImagePath)
+                        
+                        @if($mainImagePath)
+                            <div class="d-flex align-items-center justify-content-center bg-dark rounded image-main-container">
                                 <img src="{{ $mainImagePath }}" class="img-fluid h-100 w-auto"  alt="{{ $car->model }}">
-                            @else
-                                <img src="https://placehold.co/600x400" class="img-fluid h-100 w-auto" alt="placeholder">
-                                <p class="position-absolute">Nessuna immagine principale caricata</p>
-                            @endif
-                        </div>
+                            </div>
+                        @else
+                            <div class="d-flex align-items-center justify-content-center bg-light rounded image-main-container">
+                                <p class="text-muted">Nessuna immagine principale caricata</p>
+                            </div>
+                        @endif
+                      
                     </div>
                     
                     <div class="col-md-6 mb-3">
