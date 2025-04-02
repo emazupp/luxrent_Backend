@@ -11,6 +11,9 @@ class CarController extends Controller
     public function index()
     {
         $cars = Car::with(['brand', 'category'])->get();
+        foreach ($cars as $car) {
+            $car->images = $car->images->toArray();
+        }
 
         return response()->json([
             'success' => true,
@@ -21,9 +24,13 @@ class CarController extends Controller
     public function show(Car $car)
     {
         $car->load("brand", "category");
+
         return response()->json([
             'success' => true,
-            'result' => $car
+            'result' => array_merge(
+                $car->toArray(),
+                ["images" => $car->images->toArray()]
+            )
         ]);
     }
 }

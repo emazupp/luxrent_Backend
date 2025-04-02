@@ -8,8 +8,17 @@
         @csrf
         
         <div class="row g-3">
-            <div class="col-md-8 mb-3">
-                <input type="file" class="form-control" name="images[]" multiple>
+            <div class="col-md-6 mb-3">
+                <label for="main_image" class="form-label">Immagine principale</label>
+                <input type="file" class="form-control" name="main_image" multiple>
+                <small>Seleziona solamente una immagine, sarà quella principale</small>
+
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label for="detail_images[]" class="form-label">Immagini di dettaglio</label>
+                <input type="file" class="form-control" name="detail_images[]" multiple>
+                <small>Seleziona anche più di un immagine</small>
             </div>
 
             <div class="col-md-6">

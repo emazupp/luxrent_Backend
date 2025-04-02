@@ -53,17 +53,26 @@ class CarController extends Controller
         $newCar->price_per_day = $data["price_per_day"];
         $newCar->is_available = $data["is_available"];
 
-        if (array_key_exists("images", $data)) {
-            $imageIds = [];
-            foreach ($data["images"] as $image) {
-                $path = Storage::put("uploads", $image);
-                $newImage = $newCar->car_images()->create(["path" => $path]);
-                $imageIds[] = $newImage->id;
-            }
-            $newCar->car_images()->attach($imageIds);
+        $newCar->save();
+
+        if (array_key_exists("main_image", $data)) {
+            $path = Storage::putFile("uploads/cars", $data["main_image"]);
+            $newCar->images()->create([
+                "path" => $path,
+                "is_main" => true
+            ]);
         }
 
-        $newCar->save();
+        if (array_key_exists("detail_images", $data)) {
+            foreach ($data["detail_images"] as $image) {
+                $path = Storage::putFile("uploads/cars", $image);
+                $newCar->images()->create([
+                    "path" => $path,
+                    "is_main" => false
+                ]);
+            }
+        }
+
         return redirect()->route("cars.index");
     }
 
@@ -106,7 +115,39 @@ class CarController extends Controller
         $car->price_per_day = $data["price_per_day"];
         $car->is_available = $data["is_available"];
 
+        if (array_key_exists("main_image", $data)) {
+            $mainImage = $car->images()->where("is_main", true)->first();
+            if ($mainImage) {
+                Storage::delete($mainImage->path);
+                $mainImage->delete();
+            }
+
+            $path = Storage::putFile("uploads/cars", $data["main_image"]);
+            $car->images()->create([
+                "path" => $path,
+                "is_main" => true
+            ]);
+        }
+
+        if (array_key_exists("detail_images", $data)) {
+            $detailImages = $car->images()->where("is_main", false)->get();
+            foreach ($detailImages as $image) {
+                Storage::delete($image->path);
+                $image->delete();
+            }
+
+            foreach ($data["detail_images"] as $image) {
+                $path = Storage::putFile("uploads/cars", $image);
+                $car->images()->create([
+                    "path" => $path,
+                    "is_main" => false
+                ]);
+            }
+        }
+
         $car->update();
+
+
         return redirect()->route("cars.show", $car);
     }
 
@@ -115,6 +156,11 @@ class CarController extends Controller
      */
     public function destroy(Car $car)
     {
+        $images = $car->images;
+        foreach ($images as $image) {
+            Storage::delete($image->path);
+            $image->delete();
+        }
         $car->delete();
 
         return redirect()->route("cars.index");

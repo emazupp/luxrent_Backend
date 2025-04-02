@@ -4,11 +4,76 @@
 @section('content')
 <div class="container mt-4">
     <a href="{{ route('cars.index') }}" class="btn btn-secondary mb-3">Torna alla lista macchine</a>
-    <form action="{{ route('cars.update', $car->id) }}" method="POST">
+    <form action="{{ route('cars.update', $car->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         
         <div class="row g-3">
+            @php
+                $mainImagePath = null;
+                $otherImagesPath = [];
+            @endphp
+
+            @foreach ($car->images as $image) 
+                @if ($image->is_main)
+                    @php
+                        $mainImagePath = asset('storage/' . $image->path);
+                    @endphp
+                @else
+                    @php
+                        $otherImagesPath[] = asset('storage/' . $image->path);
+                    @endphp
+                @endif
+            @endforeach
+
+            <div class="col-md-6 mb-3 d-flex flex-column align-items-center justify-content-center">
+                <h2>Immagine principale</h2>
+                <img src="{{$mainImagePath ? $mainImagePath : "https://placehold.co/300x200"}}" class="w-100" alt="{{ $car->model }}">
+                @if(!$mainImagePath)
+                    <p class="mt-2">Nessuna immagine principale caricata</p>
+                @endif
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <h2>Immagini di dettaglio</h2>
+                @if(count($otherImagesPath)> 0) 
+                    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+                        <div class="carousel-indicators">
+                            @foreach ($otherImagesPath as $imagePath)
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}" aria-current="true" aria-label="Slide {{ $loop->iteration }}"></button>                       
+                            @endforeach
+
+                        </div>
+                        <div class="carousel-inner">
+                            @foreach ($otherImagesPath as $imagePath)
+                                <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                                    <img src="{{ $imagePath }}" class="d-block w-100" alt="{{ $car->model }} - Image {{ $loop->iteration }}">
+                                </div>
+                            @endforeach
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                @else
+                    <p class="mt-2">Nessuna immagine di dettaglio caricata</p>
+                @endif
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <input type="file" class="form-control" name="main_image" multiple>
+                <small>Seleziona solamente una immagine, sarà quella principale</small>
+            </div>
+            <div class="col-md-6 mb-3">
+                <input type="file" class="form-control" name="detail_images[]" multiple>
+                <small>Seleziona anche più di un immagine</small>
+            </div>
+
             <div class="col-md-6">
                 <label for="brand_id" class="form-label">Marchio</label>
                 <select name="brand_id" id="brand_id" class="form-select" required>

@@ -12,8 +12,6 @@ return new class extends Migration
             $table->id();
             $table->string("path");
             $table->boolean("is_main")->default(false);
-            $table->boolean("is_details_image");
-            $table->string("alt_text")->nullable();
             $table->timestamps();
         });
     }
