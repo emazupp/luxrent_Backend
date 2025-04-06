@@ -16,46 +16,47 @@ class BrandSeeder extends Seeder
         $brands = [
             [
                 'name' => 'Ferrari',
-                'description' => 'Marchio italiano di auto sportive e supercar, fondato da Enzo Ferrari.',
-                'logo_path' => 'ferrari-logo.png',
+                'description' => 'Sfreccia con il sogno italiano: guida una Ferrari e vivi l’adrenalina pura delle piste, anche su strada. Con LuxRent, il mito di Maranello è finalmente a portata di mano.',
+                'logo_path' => 'storage/icon/ferrari-logo.png',
                 'country' => 'Italia',
                 'founded_year' => 1939,
             ],
             [
                 'name' => 'Lamborghini',
-                'description' => 'Auto super sportive con design aggressivo, fondata da Ferruccio Lamborghini.',
-                'logo_path' => 'lamborghini-logo.png',
+                'description' => 'Design estremo, motore ruggente e presenza scenica inconfondibile. Affitta una Lamborghini con LuxRent e conquista ogni sguardo. È più di un’auto: è una dichiarazione di potenza.',
+                'logo_path' => 'storage/icon/lamborghini-logo.png',
                 'country' => 'Italia',
                 'founded_year' => 1963,
             ],
             [
                 'name' => 'Porsche',
-                'description' => 'Auto sportive e di lusso tedesche, famose per la 911 e la Taycan elettrica.',
-                'logo_path' => 'porsche-logo.png',
+                'description' => 'Eleganza sportiva e tecnologia tedesca all’avanguardia. Una Porsche non si guida, si sente. Noleggiala con LuxRent e scopri cosa significa dominare la strada con classe e precisione.',
+                'logo_path' => 'storage/icon/porsche-logo.png',
                 'country' => 'Germania',
                 'founded_year' => 1931,
             ],
             [
                 'name' => 'Rolls Royce',
-                'description' => 'Auto di lusso britanniche, simbolo di eleganza e status.',
-                'logo_path' => 'rolls-royce-logo.png',
+                'description' => 'Vuoi provare il vero lusso su quattro ruote? Una Rolls Royce è l’esperienza definitiva. Affittala con LuxRent e lasciati cullare da un’eleganza senza tempo e senza compromessi.',
+                'logo_path' => 'storage/icon/rolls-royce-logo.png',
                 'country' => 'Regno Unito',
                 'founded_year' => 1906,
             ],
             [
                 'name' => 'Bentley',
-                'description' => 'Auto di lusso britanniche, note per interni artigianali e prestazioni.',
-                'logo_path' => 'bentley-logo.png',
+                'description' => 'Prestazioni e raffinatezza in perfetto equilibrio. Con Bentley, ogni viaggio diventa esclusivo. LuxRent ti offre la possibilità di vivere il comfort inglese con anima sportiva.',
+                'logo_path' => 'storage/icon/bentley-logo.png',
                 'country' => 'Regno Unito',
                 'founded_year' => 1919,
             ],
             [
                 'name' => 'Aston Martin',
-                'description' => 'Auto sportive di lusso, resa famosa da James Bond.',
-                'logo_path' => 'aston-martin-logo.png',
+                'description' => 'Sali a bordo dell’auto di James Bond e vivi un’esperienza di guida iconica. L’Aston Martin è eleganza, potenza e fascino britannico. Solo con LuxRent puoi provarla davvero.',
+                'logo_path' => 'storage/icon/aston-martin-logo.png',
                 'country' => 'Regno Unito',
                 'founded_year' => 1913,
             ],
+            
         ];
 
         foreach ($brands as $brand) {
