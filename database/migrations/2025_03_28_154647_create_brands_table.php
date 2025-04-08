@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string("name")->unique();
             $table->text("description")->nullable();
             $table->string("logo")->nullable();
+            $table->string("main_image_path")->nullable();
             $table->string("country")->nullable();
             $table->integer("founded_year")->nullable();
             $table->timestamps();
