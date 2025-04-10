@@ -40,7 +40,7 @@ class CarSeeder extends Seeder
                 'fuel_type' => 'Benzina',
                 'seats' => 2,
                 'doors' => 2,
-                'color' => 'Verde Mantis',
+                'color' => 'Grigio Telesto',
                 'horsepower' => 770,
                 'engine_size' => 6498,
                 'price_per_day' => 1500.00,
@@ -56,7 +56,7 @@ class CarSeeder extends Seeder
                 'fuel_type' => 'Benzina',
                 'seats' => 4,
                 'doors' => 2,
-                'color' => 'Nero',
+                'color' => 'Bianco Carrara',
                 'horsepower' => 650,
                 'engine_size' => 3745,
                 'price_per_day' => 1000.00,
@@ -72,7 +72,7 @@ class CarSeeder extends Seeder
                 'fuel_type' => 'Benzina',
                 'seats' => 5,
                 'doors' => 4,
-                'color' => 'Bianco',
+                'color' => 'Verde Highlands',
                 'horsepower' => 571,
                 'engine_size' => 6749,
                 'price_per_day' => 2000.00,
@@ -80,18 +80,18 @@ class CarSeeder extends Seeder
             ],
             [
                 'brand_id' => 5, // Bentley
-                'category_id' => 3, // SUV
-                'model' => 'Bentayga',
+                'category_id' => 2, // Lusso
+                'model' => 'Continental GT',
                 'year' => 2022,
-                'description' => 'Bentley Bentayga è un SUV di lusso, perfetto per chi cerca prestazioni senza sacrificare il comfort.',
+                'description' => 'Bentley Continental GT, una coupé di lusso che unisce eleganza britannica e prestazioni mozzafiato.',
                 'transmission' => 'Automatica',
                 'fuel_type' => 'Benzina',
-                'seats' => 5,
-                'doors' => 4,
-                'color' => 'Marrone Caffè',
-                'horsepower' => 542,
-                'engine_size' => 3993,
-                'price_per_day' => 800.00,
+                'seats' => 4,
+                'doors' => 2,
+                'color' => 'Nero Onyx',
+                'horsepower' => 650,
+                'engine_size' => 5998,
+                'price_per_day' => 1300.00,
                 'is_available' => true,
             ],
             [
@@ -104,7 +104,7 @@ class CarSeeder extends Seeder
                 'fuel_type' => 'Benzina',
                 'seats' => 2,
                 'doors' => 2,
-                'color' => 'Blu Aston Martin',
+                'color' => 'Grigio China Grey',
                 'horsepower' => 528,
                 'engine_size' => 5204,
                 'price_per_day' => 1100.00,
@@ -136,7 +136,7 @@ class CarSeeder extends Seeder
                 'fuel_type' => 'Benzina',
                 'seats' => 2,
                 'doors' => 2,
-                'color' => 'Giallo Midas',
+                'color' => 'Verde Mantis',
                 'horsepower' => 640,
                 'engine_size' => 5204,
                 'price_per_day' => 1400.00,
@@ -152,7 +152,7 @@ class CarSeeder extends Seeder
                 'fuel_type' => 'Benzina',
                 'seats' => 2,
                 'doors' => 2,
-                'color' => 'Grigio',
+                'color' => 'Grigio Dolomite',
                 'horsepower' => 420,
                 'engine_size' => 4200,
                 'price_per_day' => 800.00,
@@ -168,13 +168,14 @@ class CarSeeder extends Seeder
                 'fuel_type' => 'Benzina',
                 'seats' => 5,
                 'doors' => 4,
-                'color' => 'Argento',
+                'color' => 'Arctic White',
                 'horsepower' => 563,
                 'engine_size' => 6749,
                 'price_per_day' => 2200.00,
                 'is_available' => true,
-            ]
+            ],
         ];
+        
 
 
         foreach ($cars as $car) {
