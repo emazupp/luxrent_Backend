@@ -38,11 +38,11 @@
                     @foreach ($car->images as $image) 
                         @if ($image->is_main)
                             @php
-                                $mainImagePath = asset('storage/' . $image->path);
+                                $mainImagePath = asset($image->path);
                             @endphp
                         @else
                             @php
-                                $otherImagesPath[] = asset('storage/' . $image->path);
+                                $otherImagesPath[] = asset($image->path);
                             @endphp
                         @endif
                     @endforeach

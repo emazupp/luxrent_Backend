@@ -58,7 +58,7 @@ class CarController extends Controller
         if (array_key_exists("main_image", $data)) {
             $path = Storage::putFile("uploads/cars", $data["main_image"]);
             $newCar->images()->create([
-                "path" => $path,
+                "path" => "storage/".$path,
                 "is_main" => true
             ]);
         }
@@ -67,7 +67,7 @@ class CarController extends Controller
             foreach ($data["detail_images"] as $image) {
                 $path = Storage::putFile("uploads/cars", $image);
                 $newCar->images()->create([
-                    "path" => $path,
+                    "path" => "storage/".$path,
                     "is_main" => false
                 ]);
             }
@@ -124,7 +124,7 @@ class CarController extends Controller
 
             $path = Storage::putFile("uploads/cars", $data["main_image"]);
             $car->images()->create([
-                "path" => $path,
+                "path" => "storage/".$path,
                 "is_main" => true
             ]);
         }
@@ -139,7 +139,7 @@ class CarController extends Controller
             foreach ($data["detail_images"] as $image) {
                 $path = Storage::putFile("uploads/cars", $image);
                 $car->images()->create([
-                    "path" => $path,
+                    "path" => "storage/".$path,
                     "is_main" => false
                 ]);
             }
