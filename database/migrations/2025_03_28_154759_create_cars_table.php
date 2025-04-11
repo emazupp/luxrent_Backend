@@ -26,6 +26,7 @@ return new class extends Migration {
             $table->integer("engine_size")->nullable();
             $table->decimal("price_per_day", 10, 2);
             $table->boolean("is_available")->default(true);
+            $table->boolean("homepage")->default(false);
             $table->timestamps();
         });
     }

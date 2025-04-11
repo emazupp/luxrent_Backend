@@ -29,6 +29,7 @@ class CarSeeder extends Seeder
                 'engine_size' => 3902,
                 'price_per_day' => 1200.00,
                 'is_available' => true,
+                "homepage" => true,
             ],
             [
                 'brand_id' => 2, // Lamborghini
@@ -45,6 +46,8 @@ class CarSeeder extends Seeder
                 'engine_size' => 6498,
                 'price_per_day' => 1500.00,
                 'is_available' => true,
+                "homepage" => true,
+
             ],
             [
                 'brand_id' => 3, // Porsche
@@ -77,6 +80,7 @@ class CarSeeder extends Seeder
                 'engine_size' => 6749,
                 'price_per_day' => 2000.00,
                 'is_available' => true,
+                "homepage" => true,
             ],
             [
                 'brand_id' => 5, // Bentley
@@ -93,6 +97,8 @@ class CarSeeder extends Seeder
                 'engine_size' => 5998,
                 'price_per_day' => 1300.00,
                 'is_available' => true,
+                "homepage" => true,
+
             ],
             [
                 'brand_id' => 6, // Aston Martin
@@ -125,6 +131,8 @@ class CarSeeder extends Seeder
                 'engine_size' => 2963,
                 'price_per_day' => 5000.00,
                 'is_available' => true,
+                "homepage" => true,
+
             ],
             [
                 'brand_id' => 2, // Lamborghini
@@ -141,6 +149,8 @@ class CarSeeder extends Seeder
                 'engine_size' => 5204,
                 'price_per_day' => 1400.00,
                 'is_available' => true,
+                "homepage" => true,
+
             ],
             [
                 'brand_id' => 3, // Porsche
@@ -157,6 +167,8 @@ class CarSeeder extends Seeder
                 'engine_size' => 4200,
                 'price_per_day' => 800.00,
                 'is_available' => true,
+                "homepage" => true,
+
             ],
             [
                 'brand_id' => 4, // Rolls Royce
@@ -195,6 +207,9 @@ class CarSeeder extends Seeder
             $newCar->engine_size = $car["engine_size"];
             $newCar->price_per_day = $car["price_per_day"];
             $newCar->is_available = $car["is_available"];
+            if(isset($car["homepage"])) {
+                $newCar->homepage = $car["homepage"];
+            }
 
             $newCar->save();
         }

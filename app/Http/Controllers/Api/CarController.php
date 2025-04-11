@@ -34,4 +34,5 @@ class CarController extends Controller
             )
         ]);
     }
+
 }
