@@ -14,27 +14,27 @@ class CategorySeeder extends Seeder
         $categories = [
             [
                 'name' => 'Supercar',
-                'icon_path' => '',
+                'icon_path' => 'storage/uploads/icons/supercar.png',
             ],
             [
                 'name' => 'Lusso',
-                'icon_path' => '',
+                'icon_path' => 'storage/uploads/icons/luxcar.png',
             ],
             [
                 'name' => 'SUV',
-                'icon_path' => '',
+                'icon_path' => 'storage/uploads/icons/suv.png',
             ],
             [
                 'name' => 'Cabrio',
-                'icon_path' => '',
+                'icon_path' => 'storage/uploads/icons/cabriolet.png',
             ],
             [
                 'name' => 'Epoca',
-                'icon_path' => '',
+                'icon_path' => 'storage/uploads/icons/vintage.png',
             ],
             [
                 'name' => 'Sportiva',
-                'icon_path' => '',
+                'icon_path' => 'storage/uploads/icons/sport.png',
             ],
         ];
 

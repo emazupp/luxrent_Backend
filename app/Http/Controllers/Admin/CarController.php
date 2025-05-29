@@ -63,6 +63,14 @@ class CarController extends Controller
             ]);
         }
 
+        if (array_key_exists("top_image", $data)) {
+            $path = Storage::putFile("uploads/cars", $data["top_image"]);
+            $newCar->images()->create([
+                "path" => "storage/".$path,
+                "is_top" => true
+            ]);
+        }
+
         if (array_key_exists("detail_images", $data)) {
             foreach ($data["detail_images"] as $image) {
                 $path = Storage::putFile("uploads/cars", $image);
@@ -129,8 +137,23 @@ class CarController extends Controller
             ]);
         }
 
+
+        if (array_key_exists("top_image", $data)) {
+            $topImage = $car->images()->where("is_top", true)->first();
+            if ($topImage) {
+                Storage::delete($topImage->path);
+                $topImage->delete();
+            }
+
+            $path = Storage::putFile("uploads/cars", $data["top_image"]);
+            $car->images()->create([
+                "path" => "storage/".$path,
+                "is_top" => true
+            ]);
+        }
+
         if (array_key_exists("detail_images", $data)) {
-            $detailImages = $car->images()->where("is_main", false)->get();
+            $detailImages = $car->images()->where("is_main", false)->where("is_top", false)->get();
             foreach ($detailImages as $image) {
                 Storage::delete($image->path);
                 $image->delete();

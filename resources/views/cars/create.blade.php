@@ -14,12 +14,22 @@
                 <small>Seleziona solamente una immagine, sarà quella principale</small>
 
             </div>
-
+            
             <div class="col-md-6 mb-3">
-                <label for="detail_images[]" class="form-label">Immagini di dettaglio</label>
-                <input type="file" class="form-control" name="detail_images[]" multiple>
-                <small>Seleziona anche più di un immagine</small>
+                <label for="top_image" class="form-label">Immagine vista dall'alto (dettaglio)</label>
+                <input type="file" class="form-control" name="top_image" multiple>
+                <small>Seleziona solamente una immagine, sarà quella di dettaglio con vista dall'alto</small>
             </div>
+
+            <div class="col-md-12">
+                <div class="col-md-6 mb-3">
+                    <label for="detail_images[]" class="form-label">Immagini di dettaglio</label>
+                    <input type="file" class="form-control" name="detail_images[]" multiple>
+                    <small>Seleziona anche più di un immagine</small>
+                </div>
+            </div>
+
+
 
             <div class="col-md-6">
                 <label for="brand_id" class="form-label">Marchio</label>

@@ -11,6 +11,7 @@
         <div class="row g-3">
             @php
                 $mainImagePath = null;
+                $topImagePath = null;
                 $otherImagesPath = [];
             @endphp
 
@@ -19,9 +20,13 @@
                     @php
                         $mainImagePath = asset($image->path);
                     @endphp
+                @elseif ($image->is_top)
+                    @php
+                        $topImagePath = asset($image->path);
+                    @endphp
                 @else
                     @php
-                        $otherImagesPath[] = asset( $image->path);
+                        $otherImagesPath[] = asset($image->path);
                     @endphp
                 @endif
             @endforeach
@@ -37,57 +42,81 @@
                         <p class="text-muted">Nessuna immagine principale caricata</p>
                     </div>
                 @endif
+
+                <div  class="mt-4">
+                    <input type="file" class="form-control" name="main_image" multiple>
+                    <small>Seleziona solamente una immagine, sarà quella principale</small>
+                </div>
             </div>
 
             <div class="col-md-6 mb-3">
-                <h2 class="text-center mb-3">Immagini di dettaglio</h2>
-                @if(count($otherImagesPath)> 0) 
-                    <div id="carouselExampleIndicators" class="carousel slide h-400" data-bs-ride="true">
-
-                        <div class="carousel-indicators">
-                            @foreach ($otherImagesPath as $imagePath)
-                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}" ></button>                       
-                            @endforeach
-                        </div>
-
-                        <div class="carousel-inner h-100 bg-light rounded">
-                            @foreach ($otherImagesPath as $imagePath)
-                                <div class="carousel-item h-100 {{ $loop->first ? 'active' : '' }}">
-                                    <div class="d-flex align-items-center justify-content-center h-100 image-detail-container">
-                                        <img src="{{ $imagePath }}" class="d-block w-100" alt="{{ $car->model }} - Image {{ $loop->iteration }}">
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-
-                        <button class="carousel-control-prev" type="button" 
-                                data-bs-target="#carouselExampleIndicators" 
-                                data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" 
-                                data-bs-target="#carouselExampleIndicators" 
-                                data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
+                <h2 class="text-center mb-3">Immagine vista dall'alto</h2>
+                @if($topImagePath)
+                    <div class="d-flex align-items-center justify-content-center bg-dark rounded image-main-container">
+                        <img src="{{ $topImagePath }}" class="img-fluid h-100 w-auto"  alt="{{ $car->model }}">
                     </div>
                 @else
-                    <div class="bg-light d-flex align-items-center justify-content-center rounded h-400">
-                        <p class="text-muted">Nessuna immagine di dettaglio caricata</p>
+                    <div class="d-flex align-items-center justify-content-center bg-light rounded image-main-container">
+                        <p class="text-muted">Nessuna immagine principale caricata</p>
                     </div>
                 @endif
+
+                <div class="mt-4">
+                    <input type="file" class="form-control" name="top_image" multiple>
+                    <small>Seleziona solamente una immagine, sarà quella con vista dall'alto</small>
+                </div>
             </div>
 
-            <div class="col-md-6 mb-3">
-                <input type="file" class="form-control" name="main_image" multiple>
-                <small>Seleziona solamente una immagine, sarà quella principale</small>
+            <div class="col-md-12 d-flex justify-content-center">
+                <div class="col-md-6 mb-3">
+                    <h2 class="text-center mb-3">Immagini di dettaglio</h2>
+                    @if(count($otherImagesPath)> 0) 
+                        <div id="carouselExampleIndicators" class="carousel slide h-400" data-bs-ride="true">
+
+                            <div class="carousel-indicators">
+                                @foreach ($otherImagesPath as $imagePath)
+                                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}" ></button>                       
+                                @endforeach
+                            </div>
+
+                            <div class="carousel-inner h-100 bg-light rounded">
+                                @foreach ($otherImagesPath as $imagePath)
+                                    <div class="carousel-item h-100 {{ $loop->first ? 'active' : '' }}">
+                                        <div class="d-flex align-items-center justify-content-center h-100 image-detail-container">
+                                            <img src="{{ $imagePath }}" class="d-block w-100" alt="{{ $car->model }} - Image {{ $loop->iteration }}">
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+
+                            <button class="carousel-control-prev" type="button" 
+                                    data-bs-target="#carouselExampleIndicators" 
+                                    data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" 
+                                    data-bs-target="#carouselExampleIndicators" 
+                                    data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    @else
+                        <div class="bg-light d-flex align-items-center justify-content-center rounded h-400">
+                            <p class="text-muted">Nessuna immagine di dettaglio caricata</p>
+                        </div>
+                    @endif
+
+                    <div class="mt-4 mb-5">
+                        <input type="file" class="form-control" name="detail_images[]" multiple>
+                        <small>Seleziona anche più di un immagine</small>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-6 mb-3">
-                <input type="file" class="form-control" name="detail_images[]" multiple>
-                <small>Seleziona anche più di un immagine</small>
-            </div>
+
+            
+            
 
             <div class="col-md-6">
                 <label for="brand_id" class="form-label">Marchio</label>

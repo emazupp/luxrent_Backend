@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string("path");
             $table->boolean("is_main")->default(false);
+            $table->boolean("is_top")->default(false);
             $table->timestamps();
         });
     }

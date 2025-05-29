@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Image extends Model
 {
 
-    protected $fillable = ['path', "alt_text", "is_main"];
+    protected $fillable = ['path', "alt_text", "is_main", "is_top"];
 
 
     public function cars()
